@@ -3,6 +3,7 @@ import Image1 from "../../assets/hero/women.png";
 import Image2 from "../../assets/hero/shopping.png";
 import Image3 from "../../assets/hero/sale.png";
 import Slider from "react-slick";
+ import { useNavigate } from 'react-router-dom';
 
 const ImageList = [
   {
@@ -29,6 +30,7 @@ const ImageList = [
 ];
 
 const Hero = ({ handleOrderPopup }) => {
+  const navigate = useNavigate();
   var settings = {
     dots: false,
     arrows: false,
@@ -49,8 +51,8 @@ const Hero = ({ handleOrderPopup }) => {
       {/* hero section */}
       <div className="container pb-8 sm:pb-0">
         <Slider {...settings}>
-          {ImageList.map((data) => (
-            <div>
+          {ImageList?.map((data,index) => (
+            <div key={index}>
               <div className="grid grid-cols-1 sm:grid-cols-2">
                 {/* text content section */}
                 <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
@@ -76,7 +78,7 @@ const Hero = ({ handleOrderPopup }) => {
                     data-aos-delay="300"
                   >
                     <button
-                      onClick={handleOrderPopup}
+                      onClick={()=>navigate("/shop")}
                       className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full"
                     >
                       Order Now
@@ -91,7 +93,7 @@ const Hero = ({ handleOrderPopup }) => {
                     className="relative z-10"
                   >
                     <img
-                      src={data.img}
+                      src={data?.img}
                       alt=""
                       className="w-[300px] h-[300px] sm:h-[450px] sm:w-[450px] sm:scale-105 lg:scale-120 object-contain mx-auto"
                     />

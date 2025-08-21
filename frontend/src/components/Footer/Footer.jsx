@@ -1,25 +1,11 @@
 import React from "react";
-// import footerLogo from "../../assets/logo.png";
-// import Banner from "../../assets/website/footer-pattern.jpg";
+import payment_image from '../../assets/website/payment_image.png'
 import { FiShoppingBag } from "react-icons/fi";
 import { FaMapLocationDot } from "react-icons/fa6";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaLocationArrow,
-  FaMobileAlt,
-} from "react-icons/fa";
+import {FaFacebook,FaInstagram,FaLinkedin,} from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
 
-// const BannerImg = {
-//   backgroundImage: `url(${Banner})`,
-//   backgroundPosition: "bottom",
-//   backgroundRepeat: "no-repeat",
-//   backgroundSize: "cover",
-//   height: "100%",
-//   width: "100%",
-// };
+
 
 const FooterLinks = [
   {
@@ -71,7 +57,7 @@ const Footer = () => {
                       className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200"
                       key={link.title}
                     >
-                      <span>{link.title}</span>
+                      <span className="hover:underline decoration-[1px] decoration-gray-500 underline-offset-2">{link.title}</span>
                     </li>
                   ))}
                 </ul>
@@ -88,7 +74,7 @@ const Footer = () => {
                       className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200"
                       key={link.title}
                     >
-                      <span>{link.title}</span>
+                      <span className="hover:underline decoration-[1px] decoration-gray-500 underline-offset-2">{link.title}</span>
                     </li>
                   ))}
                 </ul>
@@ -103,7 +89,7 @@ const Footer = () => {
                   <FaInstagram className="text-3xl" />
                 </a>
                 <a href="#">
-                  <FaFacebook className="text-3xl" />
+                  <FaFacebook className="text-3xl " />
                 </a>
                 <a href="#">
                   <FaLinkedin className="text-3xl" />
@@ -118,6 +104,16 @@ const Footer = () => {
                   <IoCall />
                   <p>+91 123456789</p>
                 </div>
+                {/*email part*/}
+                <div className="flex items-center gap-1">
+                  <input
+                  type="email"
+                  placeholder="Enter your Email...."
+                  className="w-full h-12 border-b text-white border-gray-400 bg-transparent px-4 text-lg placeholder:text-base outline-none"
+                  />
+                  <button className="px-1 py-1 bg-orange-500 rounded-lg hover:bg-primary">Submit</button>
+                </div>
+                <img src={payment_image} className=""/>
               </div>
             </div>
           </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
-
 import { FaCartShopping } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import { FiShoppingBag } from "react-icons/fi";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
 import SearchInput from "../SearchInput";
 
 
@@ -16,17 +16,17 @@ const Menu = [
   },
   {
     id: 2,
-    name: "Top Rated",
+    name: "Shop",
     link: "/#services",
   },
   {
     id: 3,
-    name: "Kids Wear",
+    name: "About",
     link: "/#",
   },
   {
     id: 3,
-    name: "Mens Wear",
+    name: "Contact",
     link: "/#",
   },
   {
@@ -57,9 +57,9 @@ const DropdownLinks = [
 const Navbar = ({ handleOrderPopup }) => {
   
   return (
-    <div className="shadow-md bg-white dark:bg-slate-800 dark:text-white duration-200 relative z-40">
+    <div className="shadow-md bg-white dark:bg-slate-800 dark:text-white duration-200 relative z-40 ">
       {/* upper Navbar */}
-      <div className="bg-primary/40 py-2">
+      <div className="bg-primary/40 py-2 ">
         <div className="container flex justify-between items-center">
           <div>
             <a href="#" className="font-bold text-xl items-center flex gap-1">
@@ -81,17 +81,26 @@ const Navbar = ({ handleOrderPopup }) => {
                 Order
               </span>
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
+              <span className="absolute right-75 top-0 w-3.5 h-3.5 text-white text-[12px] flex items-center justify-center bg-primary rounded-full">0</span>
             </button>
 
             {/* Darkmode Switch */}
             <div>
               <DarkMode />
             </div>
+
+            {/* Menu Icon*/}
+            <button className="text-2xl text-lightText hover:text-primary md:hidden">
+              <AiOutlineMenuUnfold className="text-2xl text-lightText hover:text-primary"/>
+            </button>
+            <div>
+              <FaUserAlt className="text-2xl hover:text-primary"/>
+            </div>
           </div>
         </div>
       </div>
       {/* lower Navbar */}
-      <div data-aos="zoom-in" className="flex justify-center">
+      <div data-aos="zoom-in" className="flex justify-center ">
         <ul className="sm:flex hidden items-center gap-4">
           {Menu.map((data) => (
             <li key={data.id}>
