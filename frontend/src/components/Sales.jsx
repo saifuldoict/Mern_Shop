@@ -7,7 +7,7 @@ const Sales = () => {
   return (
     <div>
         <div className='container'>
-            <div className='w-full h-auto md:h-[550px] flex flex-col md:flex-row items-center justify-center gap-10'>
+            <div className='w-full h-auto md:h-[550px] flex flex-col md:flex-row items-center justify-center gap-10 dark:bg-white'>
                 <div className='w-full md:w-1/2 h-[250px] md:h-full border border-gray-300 rounded-md overflow-hidden relative group '>
                      <img src={laptop} className='w-full h-full object-cover group-hover:scale-110 duration-500 ease-out' alt='image'/>
                      <div className='absolute w-full h-full top-0 left-0 bg-black/50 text-white flex md:items-center md:justify-center sm:items-start'>
