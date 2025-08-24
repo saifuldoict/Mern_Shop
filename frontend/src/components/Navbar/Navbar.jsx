@@ -6,7 +6,8 @@ import { FiShoppingBag } from "react-icons/fi";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import SearchInput from "../SearchInput";
-
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { IoMdClose } from "react-icons/io";
 
 const Menu = [
   {
@@ -55,7 +56,7 @@ const DropdownLinks = [
 ];
 
 const Navbar = ({ handleOrderPopup }) => {
-  
+    let [isOpen, setIsOpen] = useState(false)
   return (
     <div className="shadow-md bg-white dark:bg-slate-800 dark:text-white duration-200 relative z-40 ">
       {/* upper Navbar */}
@@ -90,9 +91,72 @@ const Navbar = ({ handleOrderPopup }) => {
             </div>
 
             {/* Menu Icon*/}
-            <button className="text-2xl text-lightText hover:text-primary md:hidden">
+            <button onClick={()=>setIsOpen(true)} className="text-2xl text-lightText hover:text-primary md:hidden">
               <AiOutlineMenuUnfold className="text-2xl text-lightText hover:text-primary"/>
             </button>
+            {/*diaglog button*/}
+           
+
+      <Dialog open={isOpen} as="div" className="relative z-40  md:hidden" onClose={()=>setIsOpen(false)}>
+        <div className="fixed inset-0 z-40 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <DialogPanel
+              transition
+              className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
+            >
+              <div className="h-[400px]">
+                <div className="flex justify-between text-white">
+                  <h2 className="text-xl">Navigation Menu</h2>
+                  <IoMdClose className="text-white text-xl font-bold bg-red-700 rounded-md hover:bg-primary transition-all"  onClick={()=>setIsOpen(false)} />
+                </div>
+                {/*navigation menu*/}
+                <div>
+                  <ul className=" items-center  p-5">
+                    {Menu.map((data) => (
+                      <li key={data.id} className="p-2 ">
+                        <a
+                          href={data.link}
+                          className="inline-block px-10  hover:text-white duration-200"
+                        >
+                          
+                          {data.name}
+                          
+                        </a>
+                      </li>
+                    ))}
+                    {/* Simple Dropdown and Links */}
+                    <li className="group relative cursor-pointer">
+                      <a href="#" className="flex items-center gap-[2px] py-2">
+                        Trending Products
+                        <span>
+                          <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
+                        </span>
+                      </a>
+                      <div className="absolute z-[9999] hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-md">
+                        <ul>
+                          {DropdownLinks.map((data) => (
+                            <li key={data.id}>
+                              <a
+                                href={data.link}
+                                className="inline-block w-full rounded-md p-2 hover:bg-primary/20 "
+                              >
+                                {data.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+            </div>
+          </li>
+        </ul>
+                </div>
+              </div>
+              
+              
+            </DialogPanel>
+          </div>
+        </div>
+      </Dialog>
+            {/*diaglog button*/}
             <div>
               <FaUserAlt className="text-2xl hover:text-primary"/>
             </div>
