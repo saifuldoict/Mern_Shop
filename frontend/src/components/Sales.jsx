@@ -17,7 +17,7 @@ const Sales = () => {
                      </div>
                 </div>
                 <div className='w-full md:w-1/2'>
-                        fff
+                        ff
                 </div>
             </div>
         </div>
