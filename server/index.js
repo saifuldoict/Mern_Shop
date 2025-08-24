@@ -1,6 +1,7 @@
 import express from "express";
 import 'dotenv/config'
 import connectDB from "./config/mongodb.js";
+import userRouter from "./routes/userRoute.js";
 
 
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
     res.send('Database connected now!')
 })
 
+app.use('/api/user',userRouter)
 app.listen(port,()=>{
     console.log(`Server is running on port: ${port}`)
 })
