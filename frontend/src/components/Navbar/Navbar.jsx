@@ -6,7 +6,9 @@ import { FiShoppingBag } from "react-icons/fi";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import SearchInput from "../SearchInput";
+import { IoClose } from "react-icons/io5";
 
+import { Dialog, DialogPanel } from '@headlessui/react'
 
 const Menu = [
   {
@@ -55,7 +57,7 @@ const DropdownLinks = [
 ];
 
 const Navbar = ({ handleOrderPopup }) => {
-  
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="shadow-md bg-white dark:bg-slate-800 dark:text-white duration-200 relative z-40 ">
       {/* upper Navbar */}
@@ -89,10 +91,80 @@ const Navbar = ({ handleOrderPopup }) => {
               <DarkMode />
             </div>
 
-            {/* Menu Icon*/}
-            <button className="text-2xl text-lightText hover:text-primary md:hidden">
+            {/* Menu Icon for Small device*/}
+            <button onClick={()=>setIsOpen(true)}  className="text-2xl text-lightText hover:text-primary md:hidden">
               <AiOutlineMenuUnfold className="text-2xl text-lightText hover:text-primary"/>
             </button>
+            {/* small device Dialog button*/}
+            
+             <Dialog open={isOpen}  
+             className="relative z-50 md:hidden text-white/80 " 
+             onClose={()=>setIsOpen(false)}>
+              <div className="fixed inset-0 z-50 w-screen items-center justify-center p-4 bg-black/90">
+              <DialogPanel
+              transition
+              className="absolute max-w-[90%]  space-y-4 bg-black/40 p-6 border border-lightText rounded-md top-10"
+                >
+
+                  {/*dialog items*/}
+                  <div className="w-[500px] h-[400px] " >
+                    <div className="flex items-center justify-between  px-20">
+                      <h1 className="text-xl text-white">Navigation Menu</h1>
+                     <button onClick={()=>setIsOpen(false)} className="text-white text-2xl hover:text-red-700 duration-300 rounded-md border border-white/40 hover:border border-red-300">
+                      <IoClose />
+                     </button>
+                    </div>
+                    <ul>
+                      {Menu.map((data) => (
+                      <li key={data.id}>
+                        <a
+                          href={data.link}
+                          className="inline-block px-4 hover:text-primary h-[1px] duration-200 p-3"
+                        >
+                          {data.name}
+                        </a>
+                        
+                      </li>
+                    ))}
+                    {/* Simple Dropdown and Links */}
+          <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] py-2">
+              Trending Products
+              <span>
+                <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
+              </span>
+            </a>
+            <div className="absolute z-[9999] hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-md">
+              <ul>
+                {DropdownLinks.map((data) => (
+                  <li key={data.id}>
+                    <a
+                      href={data.link}
+                      className="inline-block w-full rounded-md p-2 hover:bg-primary/20 "
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+          {/* Simple Dropdown and Links close */}
+                    </ul>
+                   
+                  </div>
+                  
+              
+            </DialogPanel>
+        </div>
+      </Dialog>
+
+
+
+
+
+
+             {/* login/registration head icon*/}
             <div>
               <FaUserAlt className="text-2xl hover:text-primary"/>
             </div>
@@ -135,6 +207,7 @@ const Navbar = ({ handleOrderPopup }) => {
               </ul>
             </div>
           </li>
+          {/* Simple Dropdown and Links close */}
         </ul>
       </div>
     </div>
