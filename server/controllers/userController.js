@@ -12,18 +12,6 @@ const createToken = (user)=>{
 }
 
 
-import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken';
-
-const createToken = (user)=>{
-    return jwt.sign({
-        _id: user._id,
-        name:user.name,
-        email:user.email 
-    }, process.env.JWT_SECRET,{expiresIn:"2h"}) 
-}
-
-
 
 export const userRegister = async (req,res)=>{
  try{
@@ -45,27 +33,8 @@ export const userRegister = async (req,res)=>{
       return res.json({ success: false, message: "User already exists" });
     }
 
-    // Password length validation
-    if (password.length < 8) {
-      return res.json({ success: false, message: "Password must be at least 8 characters long" });
-    }
-     const { name, email, password } = req.body;
-
-    // Validation
-    if (!name) return res.json({ success: false, message: "Name is required" });
-    if (!email) return res.json({ success: false, message: "Email is required" });
-    if (!password) return res.json({ success: false, message: "Password is required" });
-
-    // Email validation
-    if (!validator.isEmail(email)) {
-      return res.json({ success: false, message: "Please enter a valid email" });
-    }
-
-    // Check if user exists
-    const existingUser = await userModel.findOne({ email});
-    if (existingUser) {
-      return res.json({ success: false, message: "User already exists" });
-    }
+   
+     
 
     // Password length validation
     if (password.length < 8) {
@@ -74,15 +43,9 @@ export const userRegister = async (req,res)=>{
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Save new user
     // Save new user
     const newUser = new userModel({
-      name,
-      email,
-      password: hashedPassword   // ✅ Save in correct field
       name,
       email,
       password: hashedPassword   // ✅ Save in correct field
